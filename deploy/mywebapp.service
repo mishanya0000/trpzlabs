@@ -1,0 +1,15 @@
+[Unit]
+Description=My Web Application Service
+Requires=mywebapp.socket
+After=network.target
+
+[Service]
+User=app
+Group=app
+WorkingDirectory=/opt/mywebapp
+# Systemd передає сокети починаючи з файлового дескриптора 3
+ExecStart=/opt/mywebapp/venv/bin/uvicorn app.main:app --fd 3
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

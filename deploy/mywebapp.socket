@@ -1,0 +1,13 @@
+[Unit]
+Description=My Web Application Socket
+
+[Socket]
+# Создаем Unix-сокет в директории /run
+ListenStream=/run/mywebapp.sock
+# Задаем права, чтобы Nginx и наш сервис могли общаться через него
+SocketUser=app
+SocketGroup=app
+SocketMode=0660
+
+[Install]
+WantedBy=sockets.target
